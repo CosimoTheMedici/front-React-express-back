@@ -18,6 +18,32 @@ async function getMultiple(page = 1){
     }
 }
 
+async function create(programmingLanguage){
+    const result = await db.query(
+        `INSERT INTO programming_languages(name, released_year, githut_rank, pypl_rank, tiobe_rank)
+         VALUES ("${programmingLanguage.name}","${programmingLanguage.released_year}","${programmingLanguage.githut_rank}","${programmingLanguage.pypl_rank}","${programmingLanguage.tiobe_rank}")`
+    );
+    
+    
+    let message = 'Error in creating programming language';
+    if(result.affectedRows !== 0){
+        message = 'Programming language created successfully';
+    }if(result.affectedRows === 0){
+        message = 'Programming language was not created';
+    }
+    const va = programmingLanguage.name;
+    return {message};
+}
+
+// "result": {
+//     "fieldCount": 0,
+//     "affectedRows": 1,
+//     "insertId": 48,
+//     "info": "",
+//     "serverStatus": 2,
+//     "warningStatus": 0
+// }
 module.exports = {
-    getMultiple
+    getMultiple,
+    create
 }

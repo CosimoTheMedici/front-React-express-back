@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 9000;
 const routerPage = require("./routes/Routes")
 
 app.use(express.json());
@@ -14,6 +14,7 @@ app.use(
 // });
 
 app.use('/get/data',routerPage);
+app.use('/post/data',routerPage);
 
 app.use((err,req,res,next) =>{
     const statusCode = err.statusCode || 500;
