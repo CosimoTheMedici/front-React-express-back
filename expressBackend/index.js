@@ -15,6 +15,7 @@ app.use(
 
 app.use('/get/data',routerPage);
 app.use('/post/data',routerPage);
+app.use('/update/data',routerPage);
 
 app.use((err,req,res,next) =>{
     const statusCode = err.statusCode || 500;

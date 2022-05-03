@@ -34,6 +34,17 @@ async function create(programmingLanguage){
     const va = programmingLanguage.name;
     return {message};
 }
+async function update(id,data){
+    const result = await db.query(
+        `UPDATE programming_languages SET name="${data.name}", released_year=${data.released_year}, githut_rank=${data.githut_rank}, pypl_rank=${data.pypl_rank}, tiobe_rank=${data.tiobe_rank} WHERE id=${id}`);
+        
+    let message = 'Error in updating prog lang'
+    if(result.affectedRows){
+        message = 'Programming language updated successfully';
+    }
+    return {message};
+
+}
 
 // "result": {
 //     "fieldCount": 0,
@@ -45,5 +56,6 @@ async function create(programmingLanguage){
 // }
 module.exports = {
     getMultiple,
-    create
-}
+    create,
+    update,
+};
