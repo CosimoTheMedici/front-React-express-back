@@ -54,8 +54,22 @@ async function update(id,data){
 //     "serverStatus": 2,
 //     "warningStatus": 0
 // }
+
+
+async function remove(id){
+    const result = await db.query(
+        `DELETE FROM programming_languages where id=${id}`
+    );
+    let message = 'Error in deleting programming language';
+
+    if(result.affectedRows){
+        message = 'programming language deleted successfully';
+    }
+    return {message}
+}
 module.exports = {
     getMultiple,
     create,
     update,
+    remove,
 };
